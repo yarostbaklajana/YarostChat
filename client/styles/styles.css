@@ -31,9 +31,24 @@ body {
   overflow: auto;
   margin: 0;
   padding: 0;
-  padding-right: 17px;
   list-style-type: none;
   align-items: flex-end;
+}
+
+#messages::-webkit-scrollbar {
+  background: transparent;
+  width: 10px;
+}
+
+#messages::-webkit-scrollbar-thumb {
+  background-color: darkgray;
+  box-shadow: 0px 0px 2px 0px black;
+  border-radius: 2px;
+}
+
+#messages::-webkit-scrollbar-track {
+  border: none;
+  background: transparent;
 }
 
 .message {
