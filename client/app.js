@@ -12,8 +12,8 @@ form.addEventListener('submit', handleSubmit);
 function handleSubmit (e) {
   e.preventDefault();
   const message = input.value;
-  appendMessage(message, 'message-dispatched');
   socket.emit('chat message', message);
+  appendMessage(message, 'message-dispatched');
   input.value = '';
 }
 
