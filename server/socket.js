@@ -3,9 +3,9 @@ const socket = require('socket.io');
 module.exports = function configureSocket(server) {
   const io = socket(server);
 
-  io.on('connect', function(socket){
+  io.on('connection', function(socket){
     socket.on('chat message', function(msg){
-      socket.emit('chat message', `Echo: ${msg}`);
+      socket.broadcast.emit('chat message', msg);
     });
   });
 };

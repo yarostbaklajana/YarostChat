@@ -17,6 +17,17 @@ module.exports = {
           fallback: "style-loader",
           use: "css-loader"
         })
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[path]/[name].[ext]'
+            }
+          }
+        ]
       }
     ]
   },

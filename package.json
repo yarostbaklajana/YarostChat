@@ -4,10 +4,13 @@
   "private": true,
   "scripts": {
     "build": "webpack",
-    "start": "node ./server/server.js"
+    "start": "node ./server/server.js",
+    "build:watch": "webpack --watch"
   },
   "dependencies": {
     "express": "~4.15.2",
+    "font-awesome": "^4.7.0",
+    "fontawesome": "^4.7.2",
     "socket.io": "^2.0.3"
   },
   "devDependencies": {
