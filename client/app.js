@@ -1,4 +1,5 @@
 import io from 'socket.io-client';
+import 'font-awesome/css/font-awesome.css';
 import './styles/styles.css';
 
 const socket = io();
@@ -12,14 +13,16 @@ function handleSubmit (e) {
   e.preventDefault();
   const message = input.value;
   socket.emit('chat message', message);
+  appendMessage(message, 'message-dispatched');
   input.value = '';
 }
 
 socket.on('chat message', appendMessage);
 
-function appendMessage (msg) {
+function appendMessage (msg, className) {
   const li = document.createElement('LI');
   li.classList.add('message');
+  li.classList.add(className ? className : 'message-received');
   li.textContent = msg;
   list.appendChild(li);
   scrollToTop();

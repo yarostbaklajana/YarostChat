@@ -1,7 +1,12 @@
+@font-face {
+  font-family: "Raleway";
+  src: url(../fonts/raleway-regular-webfont.woff) format("woff");
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif, "Tahoma";
+  font-family: "Raleway";
 }
 
 .page-container {
@@ -9,11 +14,12 @@ body {
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
+  padding: 0 20px;
 }
 
 .page-header {
-  border-bottom: 1px solid black;
-  box-shadow: 1px 3px 17px black;
+  padding: 10px;
+  border-bottom: 1px solid gray;
   z-index: 10;
 }
 
@@ -32,7 +38,6 @@ body {
   margin: 0;
   padding: 0;
   list-style-type: none;
-  align-items: flex-end;
 }
 
 #messages::-webkit-scrollbar {
@@ -52,38 +57,58 @@ body {
 }
 
 .message {
-  background: white;
-  margin: 5px;
-  padding: 20px;
-  border-radius: 20px 0 0 20px;
-  border: 1px solid dimgray;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin: 0 5px 5px 5px ;
+  color: white;
 }
 
-.message:nth-last-of-type(1) {
-  border-radius: 20px 0 10px 20px;
+.message-received {
+  align-self: flex-start;
+  background-color: #7386ff;
+}
+
+.message-dispatched {
+  align-self: flex-end;
+  background-color: #20cf95;
 }
 
 .message:nth-of-type(1) {
   margin-top: auto;
-  border-radius: 20px 10px 0 20px;
 }
 
 .page-footer {
-  border-top: 1px solid black;
+  border-top: 1px solid gray;
 }
 
 .form {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .message-input {
-  font-size: 18px;
-  flex-grow: 6;
-  height: 25px;
+  font-size: 16px;
+  height: 45px;
+  line-height: 45px;
   padding: 0 20px;
   outline: none;
+  border: none;
 }
 
 .send-message {
-  flex-grow: 1;
+  border: none;
+  background-color: #7386ff;
+  font-size: 20px;
+  cursor: pointer;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 0 10px;
+  outline: none;
+}
+
+.send-message:hover {
+  background-color: #7386cc;
 }
