@@ -1,23 +1,24 @@
 @font-face {
-  font-family: "Raleway";
-  src: url(../fonts/raleway-regular-webfont.woff) format("woff");
+  font-family: "Open Sans";
+  src: url(../fonts/OpenSans-Light.woff) format("woff");
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: "Raleway";
+  font-family: "Open Sans", sans-serif;
 }
 
-.page-container {
+.page__container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
   padding: 0 20px;
+  background: url("../images/bg.png") repeat;
 }
 
-.page-header {
+.page__header {
   padding: 10px;
   border-bottom: 1px solid gray;
   z-index: 10;
@@ -30,14 +31,31 @@ body {
 }
 
 .messages {
+  float: right;
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 100%;
+  width: 70%;
   overflow: auto;
   margin: 0;
   padding: 0;
   list-style-type: none;
+}
+
+.users {
+  float: left;
+  width: 30%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #333;
+  color: #fff;
+  font-size: 18px;
+}
+
+.user {
+  padding: 10px;
+  border-bottom: 1px solid #888;
 }
 
 #messages::-webkit-scrollbar {
@@ -77,11 +95,11 @@ body {
   margin-top: auto;
 }
 
-.page-footer {
+.page__footer {
   border-top: 1px solid gray;
 }
 
-.form {
+.message-form {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -94,9 +112,10 @@ body {
   padding: 0 20px;
   outline: none;
   border: none;
+  width: 100%;
 }
 
-.send-message {
+.message-submit-btn {
   border: none;
   background-color: #7386ff;
   font-size: 20px;
@@ -112,3 +131,93 @@ body {
 .send-message:hover {
   background-color: #7386cc;
 }
+
+.modal-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.identification-form {
+  position: absolute;
+  min-width: 375px;
+  width: 60%;
+  height: 170px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background: #333;
+  padding: 20px;
+}
+
+.identification-form__heading {
+  text-align: center;
+  margin: 0;
+  padding: 0 0 20px 0 ;
+  color: #fce5b8;
+  font-weight: 100;
+}
+
+.identification-form__input {
+  border: none;
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  display: block;
+  outline: none;
+  font-size: 18px;
+  color: #666;
+  background: #333;
+  text-align: center;
+  line-height: 40px;
+}
+
+.border-line {
+  stroke: #fce5b8;
+  stroke-width: 2px;
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.border-line {
+  animation: dash 2s ease-out forwards;
+}
+
+.submit-btn__wrapper {
+  text-align: right;
+}
+
+.identification-form__submit-btn {
+  background: #666;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  font-size: 20px;
+  transition: all 0.5s ease;
+}
+
+.identification-form__submit-btn:hover {
+  background: #ccc;
+  color: #333;
+}
+
+.hidden {
+  display: none;
+}
+
+
+

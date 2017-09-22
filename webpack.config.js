@@ -19,12 +19,12 @@ module.exports = {
         })
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        test: /\.(png|eot|svg|ttf|woff|woff2)$/,
         use: [
           {
             loader: 'file-loader',
             options: {
-              name: '[path]/[name].[ext]'
+              name: 'assets/[name].[ext]'
             }
           }
         ]
