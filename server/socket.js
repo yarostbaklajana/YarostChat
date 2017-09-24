@@ -3,27 +3,36 @@ const socket = require('socket.io');
 module.exports = function configureSocket(server) {
   const io = socket(server);
 
-  io.on('connection', function(socket){
+  const users = new Map();
 
-    socket.on('user logged', function (name) {
-      socket.username = name;
-      const names = getNames(io.sockets.sockets);
+  io.on('connection', function (socket) {
+
+    socket.on('log in', function (name) {
+
+      users.set(socket.id, name);
+
+      socket.on('chat message', function (msg) {
+        socket.broadcast.emit('chat message', `${users.get(socket.id)}: ${msg}`);
+      });
+
+      socket.on('disconnect', function () {
+        users.delete(socket.id);
+        const names = getNames(users);
+        io.sockets.emit('user update', names);
+      });
+
+      const names = getNames(users);
       io.sockets.emit('user update', names);
+
     });
 
-    socket.on('chat message', function(msg){
-      socket.broadcast.emit('chat message', `${socket.username}: ${msg}`);
-    });
-
-    socket.on('disconnect', function () {
-      const names = getNames(io.sockets.sockets);
-      io.sockets.emit('user update', names);
-    });
   });
 
-  function getNames (arr) {
-    return Object.keys(arr).map( (key)  => {
-      return arr[key].username;
+  function getNames(map) {
+    const result = [];
+    map.forEach((value) => {
+      result.push(value);
     });
+    return result;
   }
 };

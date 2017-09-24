@@ -7,29 +7,31 @@
 <body>
 <div class="page__container">
   <header class="page__header">
-    <h1>Welcome to YarostChat</h1>
+    <h1 class="page__heading">Welcome to YarostChat</h1>
   </header>
-  <main class="chat">
-    <ul id="messages" class="messages">
+  <div class="chat-wrapper hidden" id="chat-wrapper">
+    <main class="chat" id="chat">
+      <ul id="messages" class="messages">
 
-    </ul>
-    <ul id="users" class="users">
+      </ul>
+      <form id="chat-form" class="message-form">
+        <input placeholder="Type your message here" id="message" class="message-input">
+        <button class="message-submit-btn fa fa-paper-plane-o"></button>
+      </form>
+    </main>
+    <aside class="users-wrapper">
+      <ul id="users" class="users">
 
-    </ul>
-  </main>
-  <footer class="page__footer">
-    <form id="chat-form" class="message-form">
-      <input placeholder="Type your message here" id="message-input" class="message-input">
-      <button class="message-submit-btn fa fa-paper-plane-o"></button>
-    </form>
-  </footer>
+      </ul>
+    </aside>
+  </div>
   <div id="modal-wrapper" class="modal-wrapper">
     <form id="login-form" class="identification-form">
       <h2 class="identification-form__heading">Enter username</h2>
       <svg class="border" height="2" width="100%">
         <line class="border-line" x1="0" x2="100%"/>
       </svg>
-      <input id="login-input" class="identification-form__input">
+      <input id="username" class="identification-form__input">
       <svg class="border" height="20" width="100%">
         <line class="border-line" x1="0" x2="100%"/>
       </svg>

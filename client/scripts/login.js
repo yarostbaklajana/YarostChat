@@ -1,28 +1,37 @@
-export default function (socket) {
-  const loginForm = document.getElementById('login-form');
-  const loginInput = document.getElementById('login-input');
-  const modalWrapper = document.getElementById('modal-wrapper');
+class LoginForm {
+  constructor(element) {
+    this._element = element;
+  }
 
-  loginForm.addEventListener('submit', handleLoginSubmit);
+  show() {
+    this._element.classList.remove('hidden');
+  }
 
-  function handleLoginSubmit (e) {
-    e.preventDefault();
-    if(isValid(loginInput)) {
-      const username = loginInput.value;
-      socket.emit('user logged', username);
-      closeModal(modalWrapper);
+  hide() {
+    this._element.classList.add('hidden');
+  }
+
+  _formSubmitHandler(event) {
+    event.preventDefault();
+    const username = this._element.querySelector('#username').value;
+    if(this.isValid(username)) {
+      this._handleSubmit(username);
     } else {
-      alert('The username is empty!');
+      alert('The username can\'t be empty');
     }
   }
 
-  function isValid(input) {
-    return input.value !== '';
+  onSubmit(handleSubmit) {
+    this._handleSubmit = handleSubmit;
+    this._element.querySelector('#login-form').addEventListener('submit', this._formSubmitHandler.bind(this));
   }
 
-  function closeModal (modal) {
-    modal.classList.add('hidden');
+
+  isValid(input) {
+  return input.value !== '';
   }
-};
+}
+
+export  {LoginForm};
 
 
