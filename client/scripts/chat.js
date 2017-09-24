@@ -12,13 +12,13 @@ export class Chat {
   }
 
   onMessage(handleSubmit) {
-    this._handleMessageReceiving = handleSubmit;
+    this._handleMessageSubmit = handleSubmit;
     this._chatForm.addEventListener('submit', this._chatSubmitHandler.bind(this));
   }
 
   _chatSubmitHandler (event) {
     event.preventDefault();
-    this._handleMessageReceiving(this._messageInput.value);
+    this._handleMessageSubmit(this._messageInput.value);
     this._addSentMessage(this._messageInput.value);
     this._messageInput.value = '';
   }
