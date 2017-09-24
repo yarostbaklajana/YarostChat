@@ -1,6 +1,8 @@
-class LoginForm {
+export class LoginForm {
   constructor(element) {
     this._element = element;
+    this._loginForm = this._element.querySelector('#login-form');
+    this._usernameInput = this._element.querySelector('#username');
   }
 
   show() {
@@ -13,8 +15,8 @@ class LoginForm {
 
   _formSubmitHandler(event) {
     event.preventDefault();
-    const username = this._element.querySelector('#username').value;
-    if(this.isValid(username)) {
+    const username = this._usernameInput.value;
+    if(this._isValid(username)) {
       this._handleSubmit(username);
     } else {
       alert('The username can\'t be empty');
@@ -23,15 +25,11 @@ class LoginForm {
 
   onSubmit(handleSubmit) {
     this._handleSubmit = handleSubmit;
-    this._element.querySelector('#login-form').addEventListener('submit', this._formSubmitHandler.bind(this));
+    this._loginForm.addEventListener('submit', this._formSubmitHandler.bind(this));
   }
 
 
-  isValid(input) {
+  _isValid(input) {
   return input.value !== '';
   }
 }
-
-export  {LoginForm};
-
-

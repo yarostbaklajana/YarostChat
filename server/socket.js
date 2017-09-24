@@ -18,21 +18,17 @@ module.exports = function configureSocket(server) {
       socket.on('disconnect', function () {
         users.delete(socket.id);
         const names = getNames(users);
-        io.sockets.emit('user update', names);
+        io.sockets.emit('user list update', names);
       });
 
       const names = getNames(users);
-      io.sockets.emit('user update', names);
+      io.sockets.emit('user list update', names);
 
     });
 
   });
 
   function getNames(map) {
-    const result = [];
-    map.forEach((value) => {
-      result.push(value);
-    });
-    return result;
+    return Array.from(map.values());
   }
 };

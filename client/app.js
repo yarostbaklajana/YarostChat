@@ -12,14 +12,12 @@ loginForm.onSubmit((username) => {
   socket.emit('log in', username);
   loginForm.hide();
   chat.show();
+  chat.onMessage((message) => {
+    socket.emit('chat message', message);
+  });
+
+  socket.on('chat message', chat.addMessage.bind(chat));
+  socket.on('user list update', chat.updateUsers.bind(chat));
 });
 
 loginForm.show();
-
-chat.onMessage((message) => {
-  socket.emit('chat message', message);
-  chat.addMessage(message, 'message-dispatched');
-});
-
-socket.on('chat message', chat.addMessage.bind(chat));
-socket.on('user update', chat.updateUsers.bind(chat));

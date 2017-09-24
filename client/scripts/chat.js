@@ -1,6 +1,10 @@
-class Chat {
+export class Chat {
   constructor (element) {
     this._chatContainer = element;
+    this._messageInput = this._chatContainer.querySelector('#message');
+    this._usersList = this._chatContainer.querySelector('#users');
+    this._messagesList = this._chatContainer.querySelector('#messages');
+    this._chatForm = this._chatContainer.querySelector('#chat-form');
   }
 
   show () {
@@ -9,29 +13,31 @@ class Chat {
 
   onMessage(handleSubmit) {
     this._handleMessageReceiving = handleSubmit;
-    this._chatContainer.querySelector('#chat-form').addEventListener('submit', this._chatSubmitHandler.bind(this));
+    this._chatForm.addEventListener('submit', this._chatSubmitHandler.bind(this));
   }
 
   _chatSubmitHandler (event) {
     event.preventDefault();
-    const messageInput = this._chatContainer.querySelector('#message');
-    this._handleMessageReceiving(messageInput.value);
-    messageInput.value = '';
+    this._handleMessageReceiving(this._messageInput.value);
+    this._addSentMessage(this._messageInput.value);
+    this._messageInput.value = '';
   }
 
   updateUsers (users) {
-    const usersList = this._chatContainer.querySelector('#users');
-    usersList.innerHTML = '';
+    this._usersList.innerHTML = '';
     users.forEach((username) => {
-      this._addListElement(username, [ 'user' ], usersList);
+      this._addListElement(username, [ 'user' ], this._usersList);
     });
   }
 
-  addMessage (msg, className) {
-    const messagesList = this._chatContainer.querySelector('#messages');
-    const messageClassName = className ? className : 'message-received';
-    this._addListElement(msg, [ 'message', messageClassName ], messagesList);
-    this._scrollToTop(messagesList);
+  _addSentMessage(msg) {
+    this._addListElement(msg, ['message', 'message-dispatched'], this._messagesList);
+    this._scrollToTop(this._messagesList);
+  }
+
+  addMessage (msg) {
+    this._addListElement(msg, [ 'message', 'message-received' ], this._messagesList);
+    this._scrollToTop(this._messagesList);
   }
 
   _scrollToTop (container) {
@@ -48,5 +54,3 @@ class Chat {
   }
 
 }
-
-export {Chat};
