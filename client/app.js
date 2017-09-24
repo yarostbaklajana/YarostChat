@@ -1,33 +1,23 @@
 import io from 'socket.io-client';
 import 'font-awesome/css/font-awesome.css';
 import './styles/styles.css';
+import {Chat} from './scripts/chat';
+import {LoginForm} from './scripts/login';
 
 const socket = io();
+const chat = new Chat(document.getElementById('chat-wrapper'));
+const loginForm = new LoginForm(document.getElementById('modal-wrapper'));
 
-const form = document.getElementById('chat-form');
-const input = document.getElementById('message-input');
-const list = document.getElementById('messages');
-form.addEventListener('submit', handleSubmit);
+loginForm.onSubmit((username) => {
+  socket.emit('log in', username);
+  loginForm.hide();
+  chat.onMessage((message) => {
+    socket.emit('chat message', message);
+  });
 
-function handleSubmit (e) {
-  e.preventDefault();
-  const message = input.value;
-  socket.emit('chat message', message);
-  appendMessage(message, 'message-dispatched');
-  input.value = '';
-}
+  socket.on('chat message', chat.addMessage.bind(chat));
+  socket.on('user list update', chat.updateUsers.bind(chat));
+  chat.show();
+});
 
-socket.on('chat message', appendMessage);
-
-function appendMessage (msg, className) {
-  const li = document.createElement('LI');
-  li.classList.add('message');
-  li.classList.add(className ? className : 'message-received');
-  li.textContent = msg;
-  list.appendChild(li);
-  scrollToTop();
-}
-
-function scrollToTop () {
-  list.scrollTop = list.scrollHeight;
-}
+loginForm.show();

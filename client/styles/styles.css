@@ -1,43 +1,81 @@
 @font-face {
-  font-family: "Raleway";
-  src: url(../fonts/raleway-regular-webfont.woff) format("woff");
+  font-family: "Open Sans";
+  src: url(../fonts/OpenSans-Light.woff) format("woff");
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: "Raleway";
+  font-family: "Open Sans", sans-serif;
 }
 
-.page-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.page__container {
   height: 100vh;
   padding: 0 20px;
+  box-sizing: border-box;
+  background: url("../images/bg.png") repeat;
 }
 
-.page-header {
-  padding: 10px;
+.page__header {
   border-bottom: 1px solid gray;
   z-index: 10;
 }
 
+.page__heading {
+  margin: 0;
+  height: 84px;
+  line-height: 84px;
+}
+
+.chat-wrapper {
+  height: calc(100% - 85px);
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.users-wrapper {
+  flex-basis: 20%;
+}
+
 .chat {
+  flex-basis: 80%;
   height: 100%;
-  width: 100%;
   overflow: hidden;
 }
 
+.message-form {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  width: 100%;
+}
+
 .messages {
+  float: right;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: calc(100% - 51px);
   width: 100%;
   overflow: auto;
   margin: 0;
   padding: 0;
   list-style-type: none;
+}
+
+.users {
+  float: left;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #333;
+  color: #fff;
+  font-size: 18px;
+}
+
+.user {
+  padding: 10px;
+  border-bottom: 1px solid #888;
 }
 
 #messages::-webkit-scrollbar {
@@ -77,26 +115,21 @@ body {
   margin-top: auto;
 }
 
-.page-footer {
+.page__footer {
   border-top: 1px solid gray;
 }
 
-.form {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .message-input {
+  flex-grow: 2;
   font-size: 16px;
-  height: 45px;
-  line-height: 45px;
+  height: 50px;
+  line-height: 50px;
   padding: 0 20px;
   outline: none;
   border: none;
 }
 
-.send-message {
+.message-submit-btn {
   border: none;
   background-color: #7386ff;
   font-size: 20px;
@@ -105,10 +138,100 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  margin: 0 10px;
+  margin: 5px 10px;
   outline: none;
 }
 
 .send-message:hover {
   background-color: #7386cc;
 }
+
+.modal-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.identification-form {
+  position: absolute;
+  min-width: 375px;
+  width: 60%;
+  height: 170px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background: #333;
+  padding: 20px;
+}
+
+.identification-form__heading {
+  text-align: center;
+  margin: 0;
+  padding: 0 0 20px 0 ;
+  color: #fce5b8;
+  font-weight: 100;
+}
+
+.identification-form__input {
+  border: none;
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  display: block;
+  outline: none;
+  font-size: 18px;
+  color: #666;
+  background: #333;
+  text-align: center;
+  line-height: 40px;
+}
+
+.border-line {
+  stroke: #fce5b8;
+  stroke-width: 2px;
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.border-line {
+  animation: dash 2s ease-out forwards;
+}
+
+.submit-btn__wrapper {
+  text-align: right;
+}
+
+.identification-form__submit-btn {
+  background: #666;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  font-size: 20px;
+  transition: all 0.5s ease;
+}
+
+.identification-form__submit-btn:hover {
+  background: #ccc;
+  color: #333;
+}
+
+.hidden {
+  display: none;
+}
+
+
+
