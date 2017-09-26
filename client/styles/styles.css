@@ -78,6 +78,23 @@ body {
   border-bottom: 1px solid #888;
 }
 
+.emoji {
+  width: 20px;
+  vertical-align: middle;
+}
+
+.emoji__select {
+  user-select: none;
+  border-radius: 50%;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.emoji__select:hover {
+  transform: scale(1.5);
+  box-shadow: 0 0 5px gray;
+}
+
 #messages::-webkit-scrollbar {
   background: transparent;
   width: 10px;
@@ -95,19 +112,35 @@ body {
 }
 
 .message {
+  margin: 0 5px 5px 5px;
+}
+
+.message__body {
+  margin: 0;
   border-radius: 5px;
   padding: 10px 20px;
-  margin: 0 5px 5px 5px ;
   color: white;
 }
 
 .message-received {
   align-self: flex-start;
+}
+
+.message-received .message__body {
   background-color: #7386ff;
+}
+
+.user__name {
+  margin: 0;
+  color: #333;
+  font-weight: 800;
 }
 
 .message-dispatched {
   align-self: flex-end;
+}
+
+.message-dispatched .message__body {
   background-color: #20cf95;
 }
 
@@ -197,6 +230,11 @@ body {
   stroke-width: 2px;
   stroke-dasharray: 2000;
   stroke-dashoffset: 2000;
+}
+
+.open-emoticons {
+  height: 45px;
+  width: 45px;
 }
 
 @keyframes dash {

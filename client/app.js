@@ -14,7 +14,6 @@ loginForm.onSubmit((username) => {
   chat.onMessage((message) => {
     socket.emit('chat message', message);
   });
-
   socket.on('chat message', chat.addMessage.bind(chat));
   socket.on('user list update', chat.updateUsers.bind(chat));
   chat.show();
