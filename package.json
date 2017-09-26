@@ -9,7 +9,6 @@
     "build": "webpack",
     "start": "node ./server/server.js",
     "build:watch": "webpack --watch"
-
   },
   "dependencies": {
     "express": "~4.15.2",
