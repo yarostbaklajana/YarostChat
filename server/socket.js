@@ -12,7 +12,10 @@ module.exports = function configureSocket(server) {
       users.set(socket.id, name);
 
       socket.on('chat message', function (msg) {
-        socket.broadcast.emit('chat message', `${users.get(socket.id)}: ${msg}`);
+        socket.broadcast.emit('chat message', {
+          name: users.get(socket.id),
+          message: msg
+        });
       });
 
       socket.on('disconnect', function () {
