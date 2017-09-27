@@ -17,10 +17,10 @@ export class Chat {
 
   show() {
     this._mapEmojiToImages(this._emojiMap)
-        .then((result) => {
-          this._imagesMap = result.reduce((initial, entry) => {
-            initial[entry.symbol] = entry.src;
-            return initial;
+        .then((imagesPropsArr) => {
+          this._imagesMap = imagesPropsArr.reduce((imagesMap, image) => {
+            imagesMap[image.symbol] = image.src;
+            return imagesMap;
           }, {});
           this._fillEmojiContainer(this._imagesMap);
           this._emojiContainer.addEventListener('click', this._handleEmojiSelect.bind(this));
@@ -108,10 +108,10 @@ export class Chat {
   }
 
   _replaceSymbolsWithEmoji(message, emoticons) {
-    return Object.keys(emoticons).reduce((initial, currentKey) => {
+    return Object.keys(emoticons).reduce((messageHtml, currentKey) => {
       const image = this._createImage();
       image.src = emoticons[currentKey];
-      return this._replaceAll(initial, currentKey, image.outerHTML);
+      return this._replaceAll(messageHtml, currentKey, image.outerHTML);
     }, message);
   }
 
