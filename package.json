@@ -3,17 +3,20 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "webpack",
+    "build": "webpack && npm run copy-public && npm run copy-server && npm run transform-package",
     "start": "node ./server/server.js",
-    "build:watch": "webpack --watch"
+    "build:watch": "webpack --watch",
+    "copy-public": "copyfiles  \"public/**/*\" release",
+    "copy-server": "copyfiles  \"server/**/*\" release",
+    "transform-package": "node ./scripts/transformPackageJson.js"
   },
   "dependencies": {
     "express": "~4.15.2",
     "font-awesome": "^4.7.0",
-    "fontawesome": "^4.7.2",
     "socket.io": "^2.0.3"
   },
   "devDependencies": {
+    "copyfiles": "^1.2.0",
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
