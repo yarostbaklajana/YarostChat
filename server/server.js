@@ -6,6 +6,6 @@ const app = createApp();
 const server = httpServer(app);
 configureSocket(server);
 
-server.listen(3000, function () {
+server.listen(process.env.PORT || 3000, function () {
   console.log('Server is listening on port 3000');
 });
