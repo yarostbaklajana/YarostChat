@@ -1,7 +1,4 @@
 {
-  "engines": {
-    "node": "8.5.0"
-  },
   "name": "yarostchat",
   "version": "0.0.0",
   "private": true,
