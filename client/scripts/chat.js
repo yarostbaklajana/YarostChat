@@ -17,9 +17,9 @@ export class Chat {
 
   show() {
     this._mapEmojiToImages(this._emojiMap)
-        .then((imagesPropsArr) => {
-          this._imagesMap = imagesPropsArr.reduce((imagesMap, image) => {
-            imagesMap[image.symbol] = image.src;
+        .then((emojiUrls) => {
+          this._imagesMap = emojiUrls.reduce((imagesMap, emoji) => {
+            imagesMap[emoji.symbol] = emoji.src;
             return imagesMap;
           }, {});
           this._fillEmojiContainer(this._imagesMap);
