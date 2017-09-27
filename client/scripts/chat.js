@@ -16,12 +16,12 @@ export class Chat {
   }
 
   show() {
-    this._imagesMap = {};
     this._mapEmojiToImages(this._emojiMap)
         .then((result) => {
-          result.map((item) => {
-            this._imagesMap[item.symbol] = item.src;
-          });
+          this._imagesMap = result.reduce((initial, entry) => {
+            initial[entry.symbol] = entry.src;
+            return initial;
+          }, {});
           this._fillEmojiContainer(this._imagesMap);
           this._emojiContainer.addEventListener('click', this._handleEmojiSelect.bind(this));
           this._chatContainer.classList.remove('hidden');
@@ -66,8 +66,8 @@ export class Chat {
   }
 
   _addSentMessage(msg) {
-    msg = this._replaceSymbolsWithEmoji(msg, this._imagesMap);
-    const sentMessage = this._createMessageContainer('', msg);
+    const messageWithEmojis = this._replaceSymbolsWithEmoji(msg, this._imagesMap);
+    const sentMessage = this._createMessageContainer('', messageWithEmojis);
     this._addListElement(sentMessage, ['message', 'message-dispatched'], this._messagesList);
     this._scrollToTop(this._messagesList);
   }
@@ -108,17 +108,11 @@ export class Chat {
   }
 
   _replaceSymbolsWithEmoji(message, emoticons) {
-    let result = message;
-
-    Object.keys(emoticons).map((emojiSymbol) => {
-      if (result.includes(emojiSymbol)) {
-        var image = this._createImage();
-        image.src = emoticons[emojiSymbol];
-        result = this._replaceAll(result, emojiSymbol, image.outerHTML);
-      }
-    });
-
-    return result;
+    return Object.keys(emoticons).reduce((initial, currentKey) => {
+      var image = this._createImage();
+      image.src = emoticons[currentKey];
+      return this._replaceAll(initial, currentKey, image.outerHTML);
+    }, message);
   }
 
   _replaceAll(target, search, replacement) {
