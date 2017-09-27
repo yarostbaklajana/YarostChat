@@ -109,7 +109,7 @@ export class Chat {
 
   _replaceSymbolsWithEmoji(message, emoticons) {
     return Object.keys(emoticons).reduce((initial, currentKey) => {
-      var image = this._createImage();
+      const image = this._createImage();
       image.src = emoticons[currentKey];
       return this._replaceAll(initial, currentKey, image.outerHTML);
     }, message);
