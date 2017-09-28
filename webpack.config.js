@@ -28,7 +28,7 @@ module.exports = {
             }
           }
         ],
-        include: [new RegExp(`images\\${path.sep}emoji\\${path.sep}`)]
+        include: [path.join(__dirname, 'client/images/emoji/')]
       },
       {
         test: /\.(png|eot|svg|ttf|woff|woff2)$/,
@@ -40,7 +40,7 @@ module.exports = {
             }
           }
         ],
-        exclude: [new RegExp(`images\\${path.sep}emoji\\${path.sep}`)]
+        exclude: [path.join(__dirname, 'client/images/emoji/')]
       },
     ]
   },
