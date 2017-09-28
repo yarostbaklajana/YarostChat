@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build" : "webpack",
-    "release": "webpack && npm run copy-public && npm run copy-server && npm run transform-package",
+    "release": "npm run build && npm run copy-public && npm run copy-server && npm run transform-package",
     "start": "node ./server/server.js",
     "build:watch": "webpack --watch",
     "copy-public": "copyfiles  \"public/**/*\" release",
