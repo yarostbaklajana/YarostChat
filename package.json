@@ -3,26 +3,31 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build" : "webpack",
-    "release": "npm run build && npm run copy-public && npm run copy-server && npm run transform-package",
+    "build": "webpack",
+    "release": "npm run build && npm run copy-public && npm run copy-server && npm run copy-webconfig && npm run transform-package",
     "start": "node ./server/server.js",
     "build:watch": "webpack --watch",
     "copy-public": "copyfiles  \"public/**/*\" release",
     "copy-server": "copyfiles  \"server/**/*\" release",
+    "copy-webconfig": "copyfiles web.config release",
     "transform-package": "node ./scripts/transformPackageJson.js"
   },
   "dependencies": {
-    "express": "~4.15.2",
-    "socket.io": "^2.0.3"
+    "express": "4.15.2",
+    "socket.io": "2.0.3"
   },
   "devDependencies": {
-    "copyfiles": "^1.2.0",
-    "css-loader": "^0.28.7",
-    "extract-text-webpack-plugin": "^3.0.0",
-    "file-loader": "^0.11.2",
-    "font-awesome": "^4.7.0",
-    "html-webpack-plugin": "^2.30.1",
-    "style-loader": "^0.18.2",
-    "webpack": "^3.6.0"
+    "copyfiles": "1.2.0",
+    "css-loader": "0.28.7",
+    "extract-text-webpack-plugin": "3.0.0",
+    "file-loader": "0.11.2",
+    "font-awesome": "4.7.0",
+    "html-webpack-plugin": "2.30.1",
+    "socket.io-client": "2.0.3",
+    "style-loader": "0.18.2",
+    "webpack": "3.6.0"
+  },
+  "engines" : {
+    "node" : "8.5.0"
   }
 }
