@@ -6,6 +6,6 @@
 ## Server
      open browser on http://localhost:3000/
 ## Build Information
-[![Build Status](https://api.travis-ci.org/yarostbaklajana/YarostChat.svg?branch=master)
+[![Build Status](https://api.travis-ci.org/yarostbaklajana/YarostChat.svg?branch=master)](https://travis-ci.org/yarostbaklajana/YarostChat)
 ## Live
 [Live Version](http://yarostchat.azurewebsites.net/)
