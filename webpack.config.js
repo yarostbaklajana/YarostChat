@@ -19,7 +19,7 @@ module.exports = {
         })
       },
       {
-        test: /\.(png|eot|svg|ttf|woff|woff2)$/,
+        test: /\.svg$/,
         use: [
           {
             loader: 'file-loader',
@@ -27,8 +27,21 @@ module.exports = {
               name: '[path]/[name].[ext]'
             }
           }
-        ]
-      }
+        ],
+        include: [new RegExp(`images\\${path.sep}emoji\\${path.sep}`)]
+      },
+      {
+        test: /\.(png|eot|svg|ttf|woff|woff2)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'assets/[name].[ext]'
+            }
+          }
+        ],
+        exclude: [new RegExp(`images\\${path.sep}emoji\\${path.sep}`)]
+      },
     ]
   },
   plugins: [
